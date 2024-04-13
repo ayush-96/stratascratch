@@ -1,47 +1,22 @@
-name: CodeGuru Security Example
+name: AI Code Reviewer
+
 on:
-  push:
-    branches:
-      - 'main'
-
-permissions:
-  id-token: write
-  # for writing security events.
-  security-events: write
-  # only required for workflows in private repositories
-  actions: read
-  contents: read
-
+  pull_request:
+    types:
+      - opened
+      - synchronize
+permissions: write-all
 jobs:
-  build:
+  review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Respository
+      - name: Checkout Repo
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: AI Code Reviewer
+        uses: your-username/ai-code-reviewer@main
         with:
-          role-to-assume: arn:aws:iam::637423653752:role/CodeGuruSecurityGitHubAccessRole
-          aws-region: us-west-2
-          role-session-name: GitHubActionScript
-
-      - name: CodeGuru Security
-        uses: aws-actions/codeguru-security@v1
-        with:
-          source_path: .
-          aws_region: us-west-2
-          fail_on_severity: Critical
-      - name: Print findings
-        run: |
-          ls -l
-          cat codeguru-security-results.sarif.json
-
-      # If you want content in security scanning, you’ll need to enable codescanning by going into github.
-      # https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning-for-a-repository
-      - name: Upload result
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: codeguru-security-results.sarif.json
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # The GITHUB_TOKEN is there by default so you just need to keep it like it is and not necessarily need to add it as secret as it will throw an error. [More Details](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret)
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_MODEL: "gpt-4" # Optional: defaults to "gpt-4"
+          exclude: "**/*.json, **/*.md" # Optional: exclude patterns separated by commas
