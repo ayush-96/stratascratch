@@ -5,6 +5,8 @@ if [ ! -f pre-commit ]; then
     cat << 'EOF' > pre-commit
 #!/bin/sh
 
+echo "Running the git hook script for commit scan"
+
 # Run your shell script
 /bin/bash ./pre-commit.sh
 

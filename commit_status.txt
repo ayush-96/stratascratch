@@ -1,2 +1,4 @@
-+++ b/pre-commit.sh
-+output_file="commit_status.txt"
++++ /dev/null
++++ b/commit_status.txt
+++++ b/pre-commit.sh
+++output_file="commit_status.txt"
