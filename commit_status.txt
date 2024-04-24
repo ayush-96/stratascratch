@@ -1,0 +1,2 @@
++++ b/pre-commit.sh
++output_file="commit_status.txt"
