@@ -7,7 +7,7 @@ current_branch=$(git rev-parse --abbrev-ref HEAD)
 echo "current branch name is: $current_branch"
 
 # Name of the output file
-output_file="branch_diff.txt"
+output_file="commit_status.txt"
 
 # Perform the diff with the main branch and write output to a file
 echo -e "Files that have been updated: \n"
