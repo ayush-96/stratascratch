@@ -52,7 +52,7 @@ def chunk_code(file_path, chunk_size):
     for i, line in enumerate(lines, start=1):
         if 'def' in line:
             if current_chunk:
-                chunk.append(''.join(current_chunk))
+                chunks.append(''.join(current_chunk))
                 current_chunk = []
             function_chunk.append(line)
         elif function_chunk:
