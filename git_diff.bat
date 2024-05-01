@@ -2,4 +2,4 @@
 set output_file=src/code_compare_diff.txt
 git fetch origin main
 git diff origin/main..HEAD | findstr "^+" > %output_file%
-python src/test.py src/sample_input > review_output.txt
+python src/app.py src/code_compare_diff.txt > review_output.txt

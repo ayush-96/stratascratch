@@ -93,7 +93,7 @@ for i, chunk in enumeration(chunks, line_chunk_size):
     endTime = time()
     elapsed_time = (endTime-startTime)
 
-print("programming language: ", programming_language_response)
-print("The time taken for review process is: {elapsed_time} seconds")
-print("Syntax error: ", syntax_response)
-print("Other comments: ", suggest_response)
+    print("programming language: ", programming_language_response)
+    print("The time taken for review process is: {elapsed_time} seconds")
+    print("Syntax error: ", syntax_response)
+    print("Other comments: ", suggest_response)
