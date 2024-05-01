@@ -49,10 +49,10 @@ def chunk_code(file_path, chunk_size):
     current_chunk = []
     function_chunk = []
 
-    for i, line in enumeration(lines, start=1):
+    for i, line in enumerate(lines, start=1):
         if 'def' in line:
             if current_chunk:
-                chunk.append(''.join(current_chunk))
+                chunks.append(''.join(current_chunk))
                 current_chunk = []
             function_chunk.append(line)
         elif function_chunk:
@@ -73,14 +73,14 @@ def chunk_code(file_path, chunk_size):
     return chunks
 
 
-line_chunk_size = 50
+line_chunk_size = 500
 syntax_response = ''
 suggest_response = ''
 file_path = sys.argv[1]
 startTime = time()
 chunks = chunk_code(file_path, line_chunk_size)
 
-for i, chunk in enumeration(chunks, line_chunk_size):
+for i, chunk in enumerate(chunks, line_chunk_size):
     programming_language_prompt = detect_code_language_prompt(chunk)
     programming_language_response = get_response(programming_language_prompt) + '\n'
 
@@ -93,7 +93,7 @@ for i, chunk in enumeration(chunks, line_chunk_size):
     endTime = time()
     elapsed_time = (endTime-startTime)
 
-print("programming language: ", programming_language_response)
-print("The time taken for review process is: {elapsed_time} seconds")
-print("Syntax error: ", syntax_response)
-print("Other comments: ", suggest_response)
+    print("programming language: ", programming_language_response)
+    print("The time taken for review process is: {} seconds".format(elapsed_time))
+    print("Syntax error: ", syntax_response)
+    print("Other comments: ", suggest_response)

@@ -1,1 +1,5 @@
-Just a sample file for input to python test script
+def print_string(str):
+    print(str)
+
+str = "python string"
+print_string(str)
