@@ -6,3 +6,6 @@ Once a pull request is raised, AI code review runs a scan and adds the comment i
 OPEN_AI key has to be configured for the same.
 
 This repo depends on self-hosted runners for workflow actions
+
+
+This is a test statement
