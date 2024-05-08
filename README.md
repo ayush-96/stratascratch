@@ -5,4 +5,3 @@ All Pull Requests have an action associated with them for AI code review.
 Once a pull request is raised, AI code review runs a scan and adds the comment in the conversation.
 OPEN_AI key has to be configured for the same.
 
-This repo depends on self-hosted runners for workflow actions
