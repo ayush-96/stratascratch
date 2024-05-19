@@ -1,5 +1,0 @@
-def print_string(str):
-    print(str)
-
-str = "python string"
-print_string(str)
