@@ -15,4 +15,13 @@ FROM cte
 GROUP BY city
 ORDER BY SUM(amenities_count) DESC
 LIMIT 1;
--- skipping the multiple rows having max - window func, cte, subquery, etc. 
+-- Solution 2
+
+WITH cte AS(SELECT SUM(LENGTH(amenities)-LENGTH(REPLACE(amenities, ',', ''))) AS amenities_count,
+        city
+    FROM airbnb_search_details
+    GROUP BY city)
+
+SELECT city
+FROM cte
+WHERE amenities_count = (SELECT MAX(amenities_count) FROM cte)
